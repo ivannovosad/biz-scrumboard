@@ -1,0 +1,17 @@
+Sidebar on dashboard:
+  show what people are currently working on
+  set one developer as responsible for all tasks on story
+
+Scrumboard
+  click to toggle visibility of responsible
+  edit task (responsible, time left)
+  create new task on story
+  
+  after dragging: Reload card html with data from server (hrs left may have changed)
+  'view notes' link on each card if it has notes
+
+Overall
+  sort of keep track of state. Mark dashboard/scrumboard as 'dirty' if changes has been made and reload automatically when switching views
+  
+Other
+  toggle to only show stories i'm involved in (PO or developer)

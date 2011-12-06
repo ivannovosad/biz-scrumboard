@@ -1,0 +1,38 @@
+<?php
+
+define('OAUTH_ENDPOINT', 'https://podio.com/oauth/authorize');
+define('CLIENT', '/path/to/podio-php/PodioAPI.php');
+define('CLIENT_ID', '');
+define('CLIENT_SECRET', '');
+define('SCRUM_SPACE_URL', 'https://yoururl.podio.com/scrumdevelopment');
+
+define('SPRINT_APP_ID', null);
+define('SPRINT_STATE_ID', null);
+define('SPRINT_DURATION_ID', null);
+
+define('STORY_APP_ID', null);
+define('STORY_SPRINT_ID', null);
+define('STORY_OWNER', null);
+define('STORY_POINTS_ID', null);
+define('STORY_PRIORITY_ID', null);
+define('STORY_DEV_STARTED_ID', null);
+
+define('ITEM_TITLE_ID', null);
+define('ITEM_APP_ID', null);
+define('ITEM_STORY_ID', null);
+define('ITEM_STATE_ID', null);
+define('ITEM_RESPONSIBLE_ID', null);
+
+define('BUG_APP_ID', null);
+define('BUG_STORY_ID', null);
+define('BUG_STATE_ID', null);
+define('BUG_STATE_REPORTED', 'Reported');
+define('BUG_STATE_FIXED', 'Fixed');
+define('BUG_STATE_CHECKED', 'Checked');
+define('BUG_RESPONSIBLE_ID', null);
+
+define('STATE_NOT_STARTED', 'Not started');
+define('STATE_DEV_STARTED', 'Dev started');
+define('STATE_DEV_DONE', 'Dev done');
+define('STATE_QA_DONE', 'QA done');
+define('STATE_PO_DONE', 'PO done');
