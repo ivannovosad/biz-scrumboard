@@ -54,9 +54,9 @@
 		$.ajaxSetup({async:false});
 		
 		$(e.target.parentNode).append(
-		'<div class="spinner">Setting all development tasks to PO DONE.<br />Please wait...</div>');
+		'<div class="spinner">Setting all development tasks to DONE.<br />Please wait...</div>');
 		
-		$.post(update_url_base+'/'+taskID, {'state':state_po_done, '_method':'PUT'}, function(data){
+		$.post(update_url_base+'/'+taskID, {'state':state_done, '_method':'PUT'}, function(data){
 			if ($(e.target.parentNode).find('.spinner')) {
 				$(e.target.parentNode).find('.spinner').remove();
 			}

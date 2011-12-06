@@ -54,9 +54,9 @@
 		$itemsCount = count($story->items);
 		$itemsQADoneCount = 0;
 		foreach ($story->items as $item) {
-			if ($item->state === STATE_QA_DONE) {
-				$itemsQADoneCount++;
-			}
+//			if ($item->state === STATE_QA_DONE) {
+//				$itemsQADoneCount++;
+//			}
 			$items[] = $item->item_id;
 		}
 

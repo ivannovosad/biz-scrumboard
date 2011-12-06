@@ -187,14 +187,15 @@ class ScrumioStory {
     $total = count($this->items);
     $return = array();
     
-    if (count($states['Dev done']) > 0 && $total == (count($states['Dev done'])+count($states['QA done'])+count($states['PO done']))) {
+    /*if (count($states['Dev done']) > 0 && $total == (count($states['Dev done'])+count($states['QA done'])+count($states['PO done']))) {
       $return = array('short' => 'testing', 'long' => 'ready for testing!');
     }
     elseif (count($states['QA done']) > 0 && $total == (count($states['QA done'])+count($states['PO done']))) {
       $return = array('short' => 'po', 'long' => 'ready for PO signoff!');
     }
-    elseif (count($states['PO done']) > 0 && $total == count($states['PO done'])) {
-      $return = array('short' => 'done', 'long' => 'all finished!');
+    else*/
+    if (count($states[STATE_DONE]) > 0 && $total == count($states[STATE_DONE])) {
+        $return = array('short' => 'done', 'long' => 'all finished!');
     }
     
     return $return;
@@ -237,7 +238,7 @@ class ScrumioStory {
 		}
 
 		foreach ($this->items as $item) {
-		  $state = $item->state ? $item->state : STATE_PO_DONE;
+		  $state = $item->state ? $item->state : STATE_DONE;
 		  $list[$state][] = $item;
 		}
 		return $list;
@@ -246,7 +247,7 @@ class ScrumioStory {
 	public function get_unfinished_story_items() {
 		$items = array();
 		foreach ($this->items as $item) {
-			if ($item->state !== STATE_PO_DONE) {
+			if ($item->state !== STATE_DONE) {
 				$items[] = $item;
 			}
 		  
@@ -364,7 +365,7 @@ class ScrumioSprint {
 				$finishedItemsCount = 0;
 
 				foreach ($story->items as $item) {
-					if ($item->state === STATE_PO_DONE) {
+					if ($item->state === STATE_DONE) {
 						$finishedItemsCount++;
 					}
 				}
@@ -435,13 +436,13 @@ class ScrumioSprint {
         
         // get tasks that are at least in "Dev done"
 		return count($this->get_tasks(
-            array(STATE_DEV_DONE, STATE_QA_DONE, STATE_PO_DONE)
+            array(STATE_DONE)
         ));
     }
     
 	public function get_dev_done_tasks_percent() {
 		$allTasks = $this->get_tasks(
-            array(STATE_NOT_STARTED, STATE_DEV_STARTED, STATE_DEV_DONE, STATE_QA_DONE, STATE_PO_DONE)
+            array(STATE_NOT_STARTED, STATE_DEV_STARTED, STATE_DONE)
         );
         $allTasksCount = count($allTasks);
         
@@ -454,7 +455,7 @@ class ScrumioSprint {
     /**
      *
      * @param array $states
-     * @example $states = array(STATE_DEV_DONE, STATE_QA_DONE, STATE_PO_DONE)
+     * @example $states = array(STATE_DEV_DONE, STATE_QA_DONE, STATE_DONE)
      * @return array 
      */
     public function get_tasks($states) {
@@ -488,19 +489,16 @@ class ScrumioSprint {
 	 * @return object 
 	 */
 	public function get_users_states_object($userTaskStates) {
-		$countAll = $countDevDone = $countPODone = 0;
+		$countAll = $countDone = 0;
 		foreach ($userTaskStates as $taskState) {
-			if ($taskState === STATE_PO_DONE) {
-				$countPODone++;
-			} elseif ($taskState === STATE_DEV_DONE || $taskState === STATE_QA_DONE || $taskState === STATE_PO_DONE) {
-				$countDevDone++;
+			if ($taskState === STATE_DONE) {
+				$countDone++;
 			}
 			$countAll++;
 		}
 		
 		$statesObject = new stdClass();
-		$statesObject->PO = $countPODone;
-		$statesObject->DEV = $countDevDone;
+		$statesObject->DONE = $countDone;
 		$statesObject->ALL = $countAll;
 		return $statesObject;
 	}
