@@ -61,11 +61,13 @@
 		}
 
 		// only product owner sees the PO done button when all the tasks are in 'QA done' state
+        /*
 		if (current_user_id() === $story->product_owner['user_id']
 			&& $itemsCount === $itemsQADoneCount) {
 
 			$links[] = '<button data-id="'.$story->item_id.'" data-value="'.implode(',', $items).'">PO</button>';
 		}
+         */
       ?>
       <?= implode(' | ', $links); ?>
     </div>
