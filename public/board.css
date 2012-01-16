@@ -47,7 +47,8 @@ other bg: #cbe8a5
 }
 .state-2 .story-item,
 #main .dragging-2 {
-  background:#88bbf5;
+/*  background:#88bbf5;*/
+  background:#339933;
 }
 .state-3 .story-item,
 #main .dragging-3 {
