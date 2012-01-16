@@ -181,10 +181,10 @@ header h1 {
 #dashboard .stories > li ul.status li.not-started {
   background: #ff3300;
 }
-#dashboard .stories > li ul.status li.dev-started {
+#dashboard .stories > li ul.status li.started {
   background: #ff9933;
 }
-#dashboard .stories > li ul.status li.dev-done {
+#dashboard .stories > li ul.status li.done {
   background: #006699;
 }
 #dashboard .stories > li ul.status li.qa-done {
