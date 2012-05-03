@@ -86,6 +86,29 @@ dispatch('/authorize', 'authorize');
       return html('login.html.php', NULL, array('oauth_url' => option('OAUTH_URL'), 'error_description' => $error_description));
     }
   }
+  
+dispatch_post('/item', 'create_item');
+    function create_item() {
+        global $api;
+        
+        $values = array(
+            array(
+                'field_id' => ITEM_TITLE_ID,
+                'values' => array('value' => $_POST['item_name'])
+            ),
+            array(
+                'field_id' => ITEM_STATE_ID,
+                'values' => array('value' => STATE_NOT_STARTED)
+            ),
+            array(
+                'field_id' => ITEM_STORY_ID,
+                'values' => intval($_POST['story_id'])
+            )
+         );
+        
+        $result = $api->item->create(ITEM_APP_ID, $values);
+        return txt('ok');
+    }
 
 dispatch_put('/item/:item_id', 'update_time_left'); 
   function update_time_left() {

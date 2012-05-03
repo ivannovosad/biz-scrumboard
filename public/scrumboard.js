@@ -91,6 +91,11 @@
 				$('#dashboard').html(remoteData.dashboard);
 				$('#stories').html(remoteData.stories);
 				initSingleStoryView();
+				
+				$("a.btn-add-task").fancybox({
+					'overlayColor'		: '#000',
+					'overlayOpacity'	: 0.5
+				});
 			},
 			"json"
 		);
@@ -262,6 +267,20 @@
     }
   }
   
+  function onAddTaskClick(elmTarget, e) {
+		var story_id = $(elmTarget).data('id');
+		console.log(story_id);
+		$("#form-new-item_" + story_id).submit(function (ee) {
+			ee.preventDefault();
+			$.post("/?/item", $(this).serialize(), function () {
+				$("#status-message").hide();
+				parent.$.fancybox.close();
+				reloadView();
+			});
+			return false;
+		});
+  }
+  
   function getCollapsedData() {
     var data = false;
     if (typeof localStorage !== 'undefined' ) {
@@ -306,5 +325,6 @@
   Podio.Event.UI.bind('click', '#dashboard ul.stories > li', onDashBoardStoryClick);
   Podio.Event.UI.bind('click', '#switch-view', onDashBoardToggleClick);
   Podio.Event.UI.bind('click', '.story-group h2', onScrumBoardToggleClick);
+  Podio.Event.UI.bind('click', '.btn-add-task', onAddTaskClick);
 
 })(window, jQuery);
